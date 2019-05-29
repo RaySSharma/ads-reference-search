@@ -29,9 +29,12 @@ function getADSquery(arg) {
   if (year) {
     arg = arg.replace(year[0], "").trim()
     query = query + " year:" + year[0].replace("(","").replace(")","");
+    query = query.replace(/\s/g,"")
   }
   arg = arg.replace("et al.", "").replace("et al", "").replace("+", "").trim().trim(",").trim();
-  var authors = arg.split("/&,/");
+  arg = arg.replace(/\s/g,"");
+  
+  var authors = arg.split("&");
   for (var i = 0; i < authors.length; i++) {
     if (authors[i] && authors[i].trim().length > 0) {
       if(i == 0) {
